@@ -10,14 +10,14 @@
         <repository>
             <id>github</id>
             
-            <url>https://maven.pkg.github.com/ogeenergycorp/sm.baseSchemas</url>
+            <url>https://maven.pkg.github.com/Niladri579/sm.baseSchemas</url>
         </repository>
     </distributionManagement>
     <scm>
-        <connection>scm:git:git://github.com/ogeenergycorp/sm.baseSchemas</connection>
-        <developerConnection>scm:git:https://github.com/ogeenergycorp/sm.baseSchemas
+        <connection>scm:git:git://github.com/Niladri579/sm.baseSchemas</connection>
+        <developerConnection>scm:git:https://github.com/Niladri579/sm.baseSchemas
         </developerConnection>
-        <url>https://github.com/ogeenergycorp/sm.baseSchemas</url>
+        <url>https://github.com/Niladri579/sm.baseSchemas</url>
         <tag>sm.baseSchemas</tag>
     </scm>
   <build>

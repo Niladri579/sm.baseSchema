@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.tibco.com/namespaces/tnt/plugins/jms"
+	 targetNamespace="http://www.tibco.com/namespaces/tnt/plugins/jms"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<!-- <xs:element name="EventSource" type="xs:string" minOccurs="0" maxOccurs="1" /> -->
+	<xs:element name="CorrelationValue" type="xs:string"/>
+	<xs:simpleType name="JmsPriority">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="JmsDeliveryMode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PERSISTENT"/>
+			<xs:enumeration value="NON_PERSISTENT"/>
+			<xs:enumeration value="RELIABLE_DELIVERY"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="JmsProperties">
+		<xs:sequence>
+
+			<!-- most of these are not really accessible, easily, but appear on incoming messages -->
+			<xs:element name="JMSXUserID" type="xs:string" minOccurs="0"/>
+			<xs:element name="JMSXAppID" type="xs:string" minOccurs="0"/>
+			<xs:element name="JMSXProducerTXID" type="xs:string" minOccurs="0"/>
+			<xs:element name="JMSXConsumerTXID" type="xs:string" minOccurs="0"/>
+			<xs:element name="JMSXRcvTimestamp" type="xs:long" minOccurs="0"/>
+			<xs:element name="JMSXDeliveryCount" type="xs:int" minOccurs="0"/>
+
+			<!-- these two are actually useful and used (but group seq can't be set) -->
+			<xs:element name="JMSXGroupID" type="xs:string" minOccurs="0"/>
+			<xs:element name="JMSXGroupSeq" type="xs:int" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- tibco specific -->
+	<!--<xs:element name="JMS_TIBCO_MSG_EXT" type="xs:boolean" minOccurs="0" maxOccurs="1" /> -->
+	<!--<xs:element name="JMS_TIBCO_COMPRESS" type="xs:boolean" minOccurs="0" maxOccurs="1" /> -->
+	<!-- these two are TNT-specific, supporting the XML decoding -->
+	<!--<xs:element name="TIBCO_TNT_schema_reference" type="xs:string" minOccurs="0" maxOccurs="1" /> -->
+	<!--<xs:element name="TIBCO_TNT_root_element" type="xs:string" minOccurs="0" maxOccurs="1" /> -->
+	<!-- all other properties, vendor or application defined, in a standard format -->
+	<!-- <xs:element name="JMS_VendorDefined" type="typed-name-value-pair" minOccurs="0" maxOccurs="unbounded" />  -->
+	<!-- <xs:element name="JMS_ApplicationDefined" type="typed-name-value-pair" minOccurs="0" maxOccurs="unbounded" />  -->
+	<xs:complexType name="JmsHeaders">
+		<xs:sequence>
+
+			<!-- NOTE: a destination is actually an object.  We are able to treat is as a string
+           because the other items that define a destination (topic vs queue, server/connection)
+           are already defined in the config element.  We do the same for the ReplyTo -->
+			<xs:element name="JMSDestination" type="xs:string" minOccurs="0"/>
+			<xs:element name="JMSReplyTo" type="xs:string" minOccurs="0"/>
+
+			<!-- PROBLEM: this is actually an int, but we're representing it here as a string enumeration,
+  meaning that the app must then translate from the constants in JMS to the 'constants' in the enumeration -->
+			<xs:element name="JMSDeliveryMode" type="JmsDeliveryMode" minOccurs="0"/>
+
+			<!-- actually an int ... -->
+			<xs:element name="JMSMessageID" type="xs:string" minOccurs="0"/>
+			<xs:element name="JMSTimestamp" type="xs:long" minOccurs="0"/>
+
+			<!-- Java timestamp, millis from era -->
+			<xs:element name="JMSExpiration" type="xs:long" minOccurs="0"/>
+
+			<!-- Java timestamp, millis from era -->
+			<xs:element name="JMSRedelivered" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="JMSPriority" type="JmsPriority" minOccurs="0"/>
+
+			<!-- PROBLEM: correlation id can also be retrieved as a stream of bytes -->
+			<xs:element name="JMSCorrelationID" type="xs:string" minOccurs="0"/>
+			<xs:element name="JMSType" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

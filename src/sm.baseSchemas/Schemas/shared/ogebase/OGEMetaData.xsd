@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="http://www.oge.com/schemas/OGEMetaData" xmlns:jms="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.oge.com/schemas/OGEMetaData">
+	<xs:import namespace="http://www.tibco.com/namespaces/tnt/plugins/jms" schemaLocation="JMSHeaders.xsd"/>
+	<xs:complexType name="OGEMetaDataType">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="JMSHeaders" type="jms:JmsHeaders"/>
+			<xs:element minOccurs="0" name="JMSProperties" type="jms:JmsProperties"/>
+		</xs:sequence>
+		<xs:anyAttribute namespace="##any" processContents="skip"/>
+	</xs:complexType>
+	<xs:element name="OGEMetaData" type="OGEMetaDataType"/>
+		<xs:element name="TransactionMetaData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element  name="TransactionID" type="xs:string"/>
+				<xs:element name="EventReceivedTimestamp" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+				<xs:element  name="EventName" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

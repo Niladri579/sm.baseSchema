@@ -20,14 +20,7 @@ jobs:
     - name: Print Workspace Contents
       run: ls -R $GITHUB_WORKSPACE
       
-    - name: Install Local Dependency
-      run: |
-          mvn install:install-file \
-            -Dfile=/home/runner/work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/com.tibco.bw.palette.shared-6.2.1300.jar \
-            -DgroupId=com.tibco.plugins \
-            -DartifactId=com.tibco.bw.palette.shared \
-            -Dversion=6.2.1300 \
-            -Dpackaging=jar
+
           
     - name: Build and Package BW6 Application
       run: |

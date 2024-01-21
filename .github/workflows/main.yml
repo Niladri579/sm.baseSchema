@@ -16,6 +16,9 @@ jobs:
       with:
         distribution: 'adopt'
         java-version: '11'
+        
+    - name: Print Current Directory
+      run: ls -l
 
     -  name: Set up QEMU
        uses: docker/setup-qemu-action@v3

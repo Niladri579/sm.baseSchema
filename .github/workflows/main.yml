@@ -53,6 +53,7 @@ jobs:
         context: .
         push: true
         tags: nil579/sm.baseschema:latest
+        dockerfile: /home/runner/work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/target/Dockerfile
       env:
         DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}

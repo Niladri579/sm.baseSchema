@@ -18,7 +18,8 @@ jobs:
         java-version: '11'
         
     - name: Print Current Directory
-      run: ls -l
+      run : cd home/runner/work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/target | ls -lr
+      
 
     -  name: Set up QEMU
        uses: docker/setup-qemu-action@v3

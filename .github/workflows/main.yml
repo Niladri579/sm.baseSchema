@@ -20,6 +20,13 @@ jobs:
     - name: Print Current Directory
       run : ls -la /home/runner/work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/target
        
+    - name: Create Dockerfile
+      run: |
+            cat > ./Dockerfile <<EOL
+            FROM tibco/bwce:2.6.0
+            WORKDIR /app
+            COPY /home/runner/work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/target/sm.baseSchemas_1.0.0.202303271123.jar /app/app.bwapp
+
       
 
     -  name: Set up QEMU
@@ -33,7 +40,9 @@ jobs:
        with:
           username: nil579
           password: Docker@579
-      
+
+
+            
     - name: Build and push
       uses: docker/build-push-action@v5
       with:

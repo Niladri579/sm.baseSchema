@@ -27,7 +27,13 @@ jobs:
             WORKDIR /app
             COPY /home/runner/work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/target/sm.baseSchemas_1.0.0.202303271123.jar /app/app.bwapp
 
-      
+    - name: Build and Package BW6 Application
+      run: |
+        cd src/sm.baseSchemas
+        mvn clean package -P mavenize
+      env:
+        MAVEN_OPTS: '-Dmaven.repo.local=./.m2/repository'
+        
 
     -  name: Set up QEMU
        uses: docker/setup-qemu-action@v3
@@ -49,12 +55,7 @@ jobs:
           push: true
           tags: nil579/sm.baseschema:latest
          
-    - name: Build and Package BW6 Application
-      run: |
-        cd src/sm.baseSchemas
-        mvn clean package -P mavenize
-      env:
-        MAVEN_OPTS: '-Dmaven.repo.local=./.m2/repository'
+
 
     - name: Build Docker Image
       uses: docker/build-push-action@v2

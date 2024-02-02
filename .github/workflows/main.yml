@@ -43,7 +43,9 @@ jobs:
 
     - name: Build and push images
       run : | 
-          cd /home/runner/work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/target docker build -t nil579/bw6app .
+          cd /home/runner/work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/target
+          docker build -t nil579/bw6app .
+
 
             
     - name: Build and push

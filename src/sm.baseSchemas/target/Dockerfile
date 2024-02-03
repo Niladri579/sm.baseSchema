@@ -1,14 +1,15 @@
-# Use a base image with Java and other dependencies suitable for BWCE
-FROM tibco/bwce:2.6.0
+# Use the base image of BW6
+FROM tibco/bwce:latest
 
-# Set the working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the BWCE application JAR file into the image
-COPY /home/runner/work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/target/sm.baseSchemas_1.0.0.202303271123.jar /app/app.bwapp
+# Copy the JAR file from the host into the container
+COPY /home/runner/work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/target/sm.baseSchemas_1.0.0.202303271123.jar /app/
 
-# Expose the port if your BWCE application needs it
+# Expose any necessary ports (if applicable)
 # EXPOSE 8080
 
-# Command to run the BWCE application
-CMD ["tibco/tibco-bwce/2.6.0/bwce-container/docker/execs/app.bwapp"]
+# Define the command to run your application when the container starts
+# For example, if your JAR file is executable, you can use the java -jar command
+CMD ["java", "-jar", "sm.baseSchemas_1.0.0.202303271123.jar"]

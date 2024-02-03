@@ -43,8 +43,8 @@ jobs:
 
     - name: Build and push images
       run : | 
-          cd /home/runner/work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/target
-          docker build -t smbase:smbase .
+
+          docker build -t smbase:smbase -f /home/runner/work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/target/Dockerfile .
 
 
             

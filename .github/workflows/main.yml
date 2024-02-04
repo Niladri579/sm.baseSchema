@@ -13,8 +13,7 @@ jobs:
 
 
         
-    - name: Print Current Directory
-      run : ls -la /home/runner/work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/target
+
        
 
     - name: Build and Package BW6 Application

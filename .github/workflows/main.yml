@@ -34,13 +34,11 @@ jobs:
           sudo docker build -t smbase:latest -f /home/ubuntu/actions-runner/_work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/Dockerfile .
 
     - name: Tag Docker image
-      run: docker tag smbase:latest smbase/smbase:latest
+      run: |
+          docker tag smbase:latest smbase/smbase:latest
+          docker login -u nil579 -p Docker@579
+          
 
-    - name: Log in to Docker Hub
-      run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-      env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Push Docker image to Docker Hub
       run: docker push smbase/smbase:latest

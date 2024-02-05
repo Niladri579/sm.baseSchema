@@ -31,11 +31,11 @@ jobs:
     - name: Build and push images
       run : | 
 
-          sudo docker build -t smbase:smbase -f /home/ubuntu/actions-runner/_work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/Dockerfile .
+          sudo docker build -t smbase:latest -f /home/ubuntu/actions-runner/_work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/Dockerfile .
 
     -  name: Login to Docker Hub
        run : |
-            docker tag smbase:smbase nil579/smbase:smbase
             docker login -u nil579 -p Docker@579
-            docker push nil579/smbase
+            docker tag smbase:smbase nil579/smbase:smbase
+            docker push smbase:smbase nil579/smbase
 

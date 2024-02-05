@@ -37,7 +37,7 @@ jobs:
        run : |
             docker login -u nil579 -p Docker@579
             docker tag smbase:latest smbase/smbase:latest
-            sudo docker push smbase/smbase:latest
+            sudo docker push nil579/smbase:latest
 
             
 

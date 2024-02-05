@@ -38,31 +38,3 @@ jobs:
            docker tag smbase nil579/smbase:latest
            docker login -u nil579 -p Docker579
            docker push nil579/smbase:latest
-
-            
-    - name: Build and push
-      uses: docker/build-push-action@v5
-      with:
-          push: true
-          tags: nil579/sm.baseschema:latest
-         
-
-
-    - name: Build Docker Image
-      uses: docker/build-push-action@v2
-      with:
-        context: .
-        file: /home/runner/work/sm.baseSchema/sm.baseSchema/src/sm.baseSchemas/target/Dockerfile
-        push: true
-        tags: nil579/sm.baseschema:latest
-        
-      env:
-        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-        DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-        
-    - name: Package and Publish EAR Artifact
-      run: |
-        cd src/sm.baseSchemas/target
-        echo "BW6 Application EAR file successfully built and packaged."
-      env:
-        MAVEN_OPTS: '-Dmaven.repo.local=./.m2/repository'

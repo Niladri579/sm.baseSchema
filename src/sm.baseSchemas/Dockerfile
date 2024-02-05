@@ -1,4 +1,4 @@
-FROM tibco/bwce:latest
+FROM bwce/runtime:2.5.5
 
 WORKDIR /app
 

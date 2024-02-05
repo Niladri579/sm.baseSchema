@@ -11,6 +11,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2  
   build: 
+    needs: checkout
     runs-on: ['self-hosted', 'Linux', 'X64']
     steps:
     - name: Build and Package BW6 Application
@@ -21,6 +22,7 @@ jobs:
         MAVEN_OPTS: '-Dmaven.repo.local=./.m2/repository'
 
   image_build: 
+    needs: build
     runs-on: ['self-hosted', 'Linux', 'X64']
     steps:
     - name: Build and push images
@@ -31,7 +33,9 @@ jobs:
       run: |
           docker tag smbase:latest smbase/smbase:latest
           docker login -u nil579 -p Docker@579
+          
   deploy_to_hub: 
+    needs: image_build
     runs-on: ['self-hosted', 'Linux', 'X64']
     steps:      
     - name: Push Docker image to Docker Hub

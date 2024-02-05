@@ -41,6 +41,6 @@ jobs:
 
 
     - name: Push Docker image to Docker Hub
-      run: docker push smbase/smbase:latest
+      run: docker push nil579/smbase
             
 

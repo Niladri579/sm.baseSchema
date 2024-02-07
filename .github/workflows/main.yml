@@ -16,6 +16,8 @@ jobs:
     steps:
     - name: Build and Package BW6 Application
       run: |
+        cd /home/ubuntu/nil
+        . run.sh
         cd src/sm.baseSchemas
         mvn clean package -P mavenize
       env:

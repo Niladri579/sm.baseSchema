@@ -42,4 +42,10 @@ jobs:
     - name: Push Docker image to Docker Hub
       run: docker push nil579/smbase
             
-
+  deploy_to_k8: 
+    needs: image_build
+    runs-on: ['self-hosted', 'Linux', 'X64']
+    steps:      
+    - name: Deploy to kubernetes
+      run : | 
+          kubectl apply -f /home/ubuntu/ansible2/smbase.yaml
